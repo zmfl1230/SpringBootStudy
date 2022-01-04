@@ -10,10 +10,10 @@ import java.util.Optional;
 public class MemberService {
     MemberRepository memberRepository = new MemoryMemberRepository();
 
-    public void join (String name) {
+    public Member join (String name) {
         // 중복 이름 방지
         validateDuplicate(name);
-        memberRepository.save(name);
+        return memberRepository.save(name);
     }
 
     private void validateDuplicate(String name) {
@@ -29,5 +29,9 @@ public class MemberService {
 
     public Optional<Member> findOne(long memberId) {
         return memberRepository.findById(memberId);
+    }
+
+    public Optional<Member> findOneByName(String name) {
+        return memberRepository.findByName(name);
     }
 }
