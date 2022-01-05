@@ -1,13 +1,17 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.factory.MemberFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class MemberServiceTests {
-    MemberService memberService = new MemberService();
+
+    MemberFactory memberFactory = new MemberFactory();
+    MemberService memberService = memberFactory.memberService();
+
     @Test
     public void 회원가입() {
         //given
