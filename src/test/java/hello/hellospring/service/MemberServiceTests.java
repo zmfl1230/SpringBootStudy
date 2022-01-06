@@ -6,30 +6,26 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 @SpringBootTest(properties = "spring.main.allow-bean-definition-overriding=true")
+@Transactional
 class MemberServiceTests {
 
     @Autowired MemberService memberService;
 
-    @AfterEach
-    public void setup() {
-        memberService.deleteAll();
-    }
-
     @Test
     public void 회원가입() {
         //given
-        String memberName = "happy spring";
+        String memberName = "happy spring!";
 
         //when
         Member joinedMember = memberService.join(memberName);
 
         //then
-        Assertions.assertThat(memberService.findOneByName(memberName).get()).isEqualTo(joinedMember);
-
+        Assertions.assertThat(memberName).isEqualTo(joinedMember.getName());
 
     }
 
