@@ -42,4 +42,8 @@ public class MemberService {
     public Optional<Member> findOneByName(String name) {
         return memberRepository.findByName(name);
     }
+
+    public void deleteAll() {
+        memberRepository.deleteAll();
+    }
 }
