@@ -17,6 +17,13 @@ public class JdbcMemberRepository implements MemberRepository{
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
 
+    /*
+     * 클래스 레벨에서 구체적인 의존관계가 그려지고 있다.(인터페이스를 두지 않고, 클래스 오브젝트를 주입했기 때문)
+     * 인터페이스를 둬 클래스간 느슨한 의존관계를 나타내고 있지 않았다는 것에 온전한 DI라고 볼 수 없을 순 있으나,
+     * DI는 넓게 보면 오브젝트의 생성과 관계 설정을 오브젝트에서 제거하고, 이 역할을 제 3자(스프링 컨테이너)에게 위임한다는 IOC 개념을 포괄하고 있다.
+     * 이런 개념하에. jdbcMemberContextWithStatementStrategy을 JdbcMemberRepository에서 사용할 수 있도록 주입했다는 것은 DI의 원리를 따른다고 볼 수 있다.
+     * */
+
     public JdbcMemberRepository(JdbcMemberContextWithStatementStrategy jdbcMemberContextWithStatementStrategy) {
         this.jdbcMemberContextWithStatementStrategy = jdbcMemberContextWithStatementStrategy;
     }
