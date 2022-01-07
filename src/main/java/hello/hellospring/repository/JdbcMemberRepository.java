@@ -11,23 +11,19 @@ import java.util.Optional;
 
 public class JdbcMemberRepository implements MemberRepository{
 
-    private final DataSource dataSource;
+    private final JdbcMemberContextWithStatementStrategy jdbcMemberContextWithStatementStrategy;
 
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
 
-    public JdbcMemberRepository(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public JdbcMemberRepository(JdbcMemberContextWithStatementStrategy jdbcMemberContextWithStatementStrategy) {
+        this.jdbcMemberContextWithStatementStrategy = jdbcMemberContextWithStatementStrategy;
     }
 
     @Override
     public Member save(String name){
-
-        JdbcMemberContextWithStatementStrategy jdbcMemberContextWithStatementStrategy
-                = new JdbcMemberContextWithStatementStrategy(new JdbcMemberSave(name), dataSource);
-        return jdbcMemberContextWithStatementStrategy.jdbcMemberContext();
-
+        return jdbcMemberContextWithStatementStrategy.jdbcMemberContext(new JdbcMemberSave(name));
     }
 
     @Override

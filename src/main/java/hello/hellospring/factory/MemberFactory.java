@@ -1,5 +1,6 @@
 package hello.hellospring.factory;
 
+import hello.hellospring.repository.JdbcMemberContextWithStatementStrategy;
 import hello.hellospring.repository.JdbcMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
@@ -23,7 +24,12 @@ public class MemberFactory {
     @Bean
     public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+        return new JdbcMemberRepository(jdbcMemberContextWithStatementStrategy());
+    }
+
+    @Bean
+    public JdbcMemberContextWithStatementStrategy jdbcMemberContextWithStatementStrategy() {
+        return new JdbcMemberContextWithStatementStrategy(dataSource);
     }
 
 }

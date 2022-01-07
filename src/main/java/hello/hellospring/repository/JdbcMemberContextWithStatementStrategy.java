@@ -7,19 +7,17 @@ import javax.sql.DataSource;
 import java.sql.*;
 
 public class JdbcMemberContextWithStatementStrategy {
-    private JdbcMemberPreparedStatement jdbcMemberPreparedStatement;
 
-    private DataSource dataSource;
+    private final DataSource dataSource;
     private Connection connection = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
 
-    public JdbcMemberContextWithStatementStrategy(JdbcMemberPreparedStatement jdbcMemberPreparedStatement, DataSource dataSource) {
-        this.jdbcMemberPreparedStatement = jdbcMemberPreparedStatement;
+    public JdbcMemberContextWithStatementStrategy(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    public Member jdbcMemberContext() {
+    public Member jdbcMemberContext(JdbcMemberPreparedStatement jdbcMemberPreparedStatement) {
         try{
             connection = dataSource.getConnection();
             return jdbcMemberPreparedStatement.makeStatement(connection, preparedStatement, resultSet);
