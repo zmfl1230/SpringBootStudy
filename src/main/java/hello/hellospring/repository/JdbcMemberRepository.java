@@ -24,31 +24,10 @@ public class JdbcMemberRepository implements MemberRepository{
     @Override
     public Member save(String name){
 
-        String insertSQL = "insert into member(name) values(?)";
+        JdbcMemberContextWithStatementStrategy jdbcMemberContextWithStatementStrategy
+                = new JdbcMemberContextWithStatementStrategy(new JdbcMemberSave(name), dataSource);
+        return jdbcMemberContextWithStatementStrategy.jdbcMemberContext();
 
-        try{
-            connection = dataSource.getConnection();
-            preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, name);
-
-            preparedStatement.executeUpdate();
-            resultSet = preparedStatement.getGeneratedKeys();
-
-            if(resultSet.next()) {
-                Member member = new Member();
-                member.setId(resultSet.getLong("id"));
-                member.setName(name);
-                return member;
-
-            } else {
-                throw new SQLException("id 조회 실패");
-            }
-
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        } finally {
-            close(connection, preparedStatement, resultSet);
-        }
     }
 
     @Override
