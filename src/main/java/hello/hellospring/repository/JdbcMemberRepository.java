@@ -57,6 +57,16 @@ public class JdbcMemberRepository implements MemberRepository{
     }
 
     @Override
+    public void deleteAll() {
+        jdbcMemberContextWithStatementStrategy.jdbcMemberContext((connection, preparedStatement, resultSet) -> {
+            String deleteAllSQL = "delete from member";
+            preparedStatement = connection.prepareStatement(deleteAllSQL);
+            preparedStatement.executeUpdate();
+
+        });
+    }
+
+    @Override
     public Optional<Member> findById(long id) {
 
         String selectSQL = "select * from member where id = ?";
@@ -136,23 +146,6 @@ public class JdbcMemberRepository implements MemberRepository{
         } finally {
             close(connection, preparedStatement, resultSet);
         }
-    }
-
-    @Override
-    public void deleteAll() {
-        String deleteAllSQL = "delete from member";
-
-        try{
-            connection = dataSource.getConnection();
-            preparedStatement = connection.prepareStatement(deleteAllSQL);
-            preparedStatement.executeUpdate();
-
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        } finally {
-            close(connection, preparedStatement, resultSet);
-        }
-
     }
 
     private void close(Connection conn, PreparedStatement pstmt, ResultSet rs)
