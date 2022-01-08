@@ -17,10 +17,10 @@ public class JdbcMemberContextWithStatementStrategy {
         this.dataSource = dataSource;
     }
 
-    public Member jdbcMemberContext(JdbcMemberPreparedStatement jdbcMemberPreparedStatement) {
+    public void jdbcMemberContext(JdbcMemberPreparedStatement jdbcMemberPreparedStatement) {
         try{
             connection = dataSource.getConnection();
-            return jdbcMemberPreparedStatement.makeStatement(connection, preparedStatement, resultSet);
+            jdbcMemberPreparedStatement.makeStatement(connection, preparedStatement, resultSet);
 
         } catch (Exception e) {
             throw new IllegalStateException(e);

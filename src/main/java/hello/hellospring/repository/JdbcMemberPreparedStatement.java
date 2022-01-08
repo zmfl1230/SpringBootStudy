@@ -7,5 +7,5 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 interface JdbcMemberPreparedStatement {
-    Member makeStatement(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) throws SQLException;
+    void makeStatement(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) throws SQLException;
 }

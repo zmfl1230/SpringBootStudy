@@ -9,20 +9,23 @@ class MemberRepositoryTests {
 
     @Test
     void save() {
-        Assertions.assertThat(memberRepository.findAll().size()).isEqualTo(0);
+        String memberName = "happy spring";
 
-        Member member = memberRepository.save("happy spring");
-        Assertions.assertThat(memberRepository.findById(member.getId()).get()).isEqualTo(member);
+        Assertions.assertThat(memberRepository.findAll().size()).isEqualTo(0);
+        memberRepository.save(memberName);
+        Assertions.assertThat(memberRepository.findByName(memberName).get().getName()).isEqualTo(memberName);
     }
 
     @Test
     void findByName() {
+        String memberName1 = "happy spring1";
+        String memberName2 = "happy spring2";
         Assertions.assertThat(memberRepository.findAll().size()).isEqualTo(0);
 
-        Member member1 = memberRepository.save("happy spring1");
-        Member member2 = memberRepository.save("happy spring2");
-        Assertions.assertThat(memberRepository.findByName(member1.getName()).get()).isEqualTo(member1);
-        Assertions.assertThat(memberRepository.findByName(member1.getName()).get()).isNotEqualTo(member2);
+        memberRepository.save(memberName1);
+        memberRepository.save(memberName2);
+        Assertions.assertThat(memberRepository.findByName(memberName1).get().getName()).isEqualTo(memberName1);
+        Assertions.assertThat(memberRepository.findByName(memberName1).get().getName()).isNotEqualTo(memberName2);
     }
 
     @Test

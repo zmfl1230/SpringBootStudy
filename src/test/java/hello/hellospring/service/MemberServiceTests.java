@@ -18,13 +18,13 @@ class MemberServiceTests {
     @Test
     public void 회원가입() {
         //given
-        String memberName = "happy spring!";
+        String memberName = "happy spring!!";
 
         //when
-        Member joinedMember = memberService.join(memberName);
+        memberService.join(memberName);
 
         //then
-        Assertions.assertThat(memberName).isEqualTo(joinedMember.getName());
+        Assertions.assertThat(memberName).isEqualTo(memberService.findOneByName(memberName).get().getName());
 
     }
 

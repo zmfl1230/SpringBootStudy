@@ -17,10 +17,10 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Member join (String name) {
+    public void join (String name) {
         // 중복 이름 방지
         validateDuplicate(name);
-        return memberRepository.save(name);
+        memberRepository.save(name);
     }
 
     private void validateDuplicate(String name) {

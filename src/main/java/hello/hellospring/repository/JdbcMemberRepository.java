@@ -47,21 +47,12 @@ public class JdbcMemberRepository implements MemberRepository{
     * */
 
     @Override
-    public Member save(final String name){
-        return jdbcMemberContextWithStatementStrategy.jdbcMemberContext((connection, preparedStatement, resultSet) -> {
+    public void save(final String name){
+        jdbcMemberContextWithStatementStrategy.jdbcMemberContext((connection, preparedStatement, resultSet) -> {
             String insertSQL = "insert into member(name) values(?)";
             preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, name);
             preparedStatement.executeUpdate();
-            resultSet = preparedStatement.getGeneratedKeys();
-
-            if (resultSet.next()) {
-                Member member = new Member();
-                member.setId(resultSet.getLong("id"));
-                member.setName(name);
-                return member;
-            }
-            return null;
         });
     }
 
