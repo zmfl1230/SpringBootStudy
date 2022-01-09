@@ -4,6 +4,7 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,7 +40,12 @@ public class MemberService {
     }
 
     public Optional<Member> findOneByName(String name) {
-        return memberRepository.findByName(name);
+        try {
+            return memberRepository.findByName(name);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional
+                    .empty();
+        }
     }
 
     public void deleteAll() {
