@@ -24,7 +24,8 @@ public class MemberFactory {
     @Bean
     public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
-        return new JdbcMemberRepository(jdbcMemberContextWithStatementStrategy(), dataSource);
+//        return new JdbcMemberRepository(jdbcMemberContextWithStatementStrategy(), dataSource);
+        return new JdbcMemberRepository(dataSource);
     }
 
     @Bean
