@@ -21,7 +21,9 @@ public class MemberService {
     public void join (String name) {
         // 중복 이름 방지
         validateDuplicate(name);
-        memberRepository.save(name);
+        Member member = new Member();
+        member.setName(name);
+        memberRepository.save(member);
     }
 
     private void validateDuplicate(String name) {
