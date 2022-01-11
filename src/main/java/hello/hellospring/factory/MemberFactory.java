@@ -13,9 +13,12 @@ public class MemberFactory {
     @Autowired DataSource dataSource;
     @Autowired EntityManager entityManager;
 
+    @Autowired MemberRepository memberRepository;
+
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+//        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
 //
