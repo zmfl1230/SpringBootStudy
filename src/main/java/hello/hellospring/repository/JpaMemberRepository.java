@@ -26,6 +26,12 @@ public class JpaMemberRepository implements MemberRepository {
     }
 
     @Override
+    public Member save(Member member){
+        entityManager.persist(member);
+        return member;
+    }
+
+    @Override
     public Optional<Member> findById(long id) {
         return Optional.ofNullable(entityManager.find(Member.class, id));
     }

@@ -50,6 +50,12 @@ public class JdbcMemberRepository implements MemberRepository{
     }
 
     @Override
+    public Member save(Member member){
+        JdbcTemplate.update("insert into member(name) values(?)", member.getName());
+        return member;
+    }
+
+    @Override
     public void deleteAll() {
         JdbcTemplate.update("delete from member");
     }
