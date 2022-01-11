@@ -16,11 +16,6 @@ class MemberServiceTests {
 
     @Autowired MemberService memberService;
 
-    @BeforeEach
-    public void setUp() {
-        memberService.deleteAll();
-    }
-
     @Test
     public void 회원가입() {
         //given
