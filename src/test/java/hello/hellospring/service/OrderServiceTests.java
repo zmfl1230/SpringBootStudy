@@ -44,12 +44,12 @@ public class OrderServiceTests {
     public void setUp() {
         //given
         memberBasic = new Member();
-        member.setName("member basic");
-        member.setGrade(Grade.BASIC);
+        memberBasic.setName("member basic");
+        memberBasic.setGrade(Grade.BASIC);
 
         memberVip = new Member();
-        member.setName("member vip");
-        member.setGrade(Grade.VIP);
+        memberVip.setName("member vip");
+        memberVip.setGrade(Grade.VIP);
 
         productHigherStandard = new Product();
         productHigherStandard.setName("productHigher");
