@@ -82,7 +82,8 @@ public class OrderServiceTests {
         Order orderVip = orderService.orderItem(memberVip, productHigherStandard);
 
         //then
-        Assertions.assertThat(orderService.getPaymentAmoutnOnDiscountPolicy()).isEqualTo(orderVip.getPaymentAmount());
+        Assertions.assertThat(orderService.getPaymentAmountOnDiscountPolicy(memberVip, productHigherStandard))
+                .isEqualTo(orderVip.getPaymentAmount());
     }
 
     @Test
@@ -102,7 +103,8 @@ public class OrderServiceTests {
         Assertions.assertThat(9000).isEqualTo(orderVipLowerStandard.getPaymentAmount());
 
         // 정상적으로 할인이 적용되는 경우 (오로지 등급이 Vip 이며, 10000원 이상 구매했을 경우 할인이 적용된다.)
-        Assertions.assertThat(orderService.getPaymentAmoutnOnDiscountPolicy()).isEqualTo(orderVipHigherStandard.getPaymentAmount());
+        Assertions.assertThat(orderService.getPaymentAmountOnDiscountPolicy(memberVip, productHigherStandard))
+                .isEqualTo(orderVipHigherStandard.getPaymentAmount());
     }
 
 
