@@ -2,6 +2,7 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Grade;
 import hello.hellospring.domain.Member;
+import hello.hellospring.domain.Order;
 import hello.hellospring.domain.Product;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -69,8 +70,8 @@ public class OrderServiceTests {
         Order order = orderService.orderItem(memberBasic, productHigherStandard);
 
         //then
-        Assertions.assertThat(memberBasic.getName()).isEqualTo(order.getBuyerName());
-        Assertions.assertThat(memberBasic.getName()).isEqualTo(order.getProductName());
+        Assertions.assertThat(memberBasic.getName()).isEqualTo(order.getBuyer().getName());
+        Assertions.assertThat(memberBasic.getName()).isEqualTo(order.getProduct().getName());
 
     }
 
@@ -81,7 +82,7 @@ public class OrderServiceTests {
         Order orderVip = orderService.orderItem(memberVip, productHigherStandard);
 
         //then
-        Assertions.assertThat(orderService.getPaymentAmoutnOnDiscountPolicy()).isEqualTo(orderBasic.getPaymentAmount());
+        Assertions.assertThat(orderService.getPaymentAmoutnOnDiscountPolicy()).isEqualTo(orderVip.getPaymentAmount());
     }
 
     @Test
