@@ -11,6 +11,7 @@ public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    private Grade grade;
 
     public long getId() {
         return id;
@@ -20,11 +21,19 @@ public class Member {
         return name;
     }
 
+    public Grade getGrade() {
+        return grade;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
     }
 }
