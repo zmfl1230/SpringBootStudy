@@ -2,6 +2,7 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Grade;
 import hello.hellospring.domain.Member;
+import hello.hellospring.domain.Product;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
