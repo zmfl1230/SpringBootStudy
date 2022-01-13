@@ -9,6 +9,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
 [만들고자 하는 기능 정의]
@@ -26,14 +28,11 @@ import org.springframework.beans.factory.annotation.Autowired;
          - 일반 등급: 주문된 가격 그대로 주문이 생성되었는지 확인한다.
 
 */
-
+@SpringBootTest
+@Transactional
 public class OrderServiceTests {
 
-    @Autowired MemberService memberService;
     @Autowired OrderService orderService;
-
-    private final int PAYMENT_AMOUNT_ON_FIX_DISCOUNT = CommonConstant.STANDARD_PRICE - CommonConstant.FIX_DISCOUNT;
-    private final float PAYMENT_AMOUNT_ON_RATE_DISCOUNT = CommonConstant.STANDARD_PRICE * (1 - CommonConstant.RATE_DISCOUNT);
 
     private Member memberBasic;
     private Member memberVip;
