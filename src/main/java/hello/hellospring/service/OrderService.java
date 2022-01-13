@@ -5,13 +5,16 @@ import hello.hellospring.domain.Order;
 import hello.hellospring.domain.Product;
 import hello.hellospring.repository.order.DiscountPolicy;
 import hello.hellospring.exception.NotPermissionToDiscount;
+import hello.hellospring.repository.order.OrderRepository;
 import hello.hellospring.validator.DiscountValidator;
 
 public class OrderService {
     DiscountPolicy discountPolicy;
+    OrderRepository orderRepository;
 
-    public OrderService(DiscountPolicy discountPolicy) {
+    public OrderService(DiscountPolicy discountPolicy, OrderRepository orderRepository) {
         this.discountPolicy = discountPolicy;
+        this.orderRepository = orderRepository;
     }
 
     public Order orderItem(Member buyer, Product product) {
