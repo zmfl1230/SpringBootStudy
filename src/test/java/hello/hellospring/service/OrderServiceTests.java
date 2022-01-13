@@ -67,7 +67,7 @@ public class OrderServiceTests {
 
         //then
         Assertions.assertThat(memberBasic.getName()).isEqualTo(order.getBuyer().getName());
-        Assertions.assertThat(memberBasic.getName()).isEqualTo(order.getProduct().getName());
+        Assertions.assertThat(productHigherStandard.getName()).isEqualTo(order.getProduct().getName());
 
     }
 
