@@ -4,6 +4,8 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Order;
 import hello.hellospring.domain.Product;
 import hello.hellospring.repository.order.DiscountPolicy;
+import hello.hellospring.exception.NotPermissionToDiscount;
+import hello.hellospring.validator.DiscountValidator;
 
 public class OrderService {
     DiscountPolicy discountPolicy;
@@ -25,12 +27,12 @@ public class OrderService {
 
     public int getPaymentAmountOnDiscountPolicy(Member buyer, Product product) {
         try {
-            discountPolicy.validateMemberGrade(buyer);
-            discountPolicy.validatePurchasePrice(product.getPrice());
+            DiscountValidator.validateMemberGrade(buyer);
+            DiscountValidator.validatePurchasePrice(product.getPrice());
             return discountPolicy.discount(product.getPrice());
-            // TODO: exception 세부화
-        } catch (Exception e) {
+        } catch (NotPermissionToDiscount e) {
             return product.getPrice();
         }
     }
+
 }
