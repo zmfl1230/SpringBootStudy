@@ -1,5 +1,6 @@
 package hello.hellospring.service;
 
+import hello.hellospring.CommonConstant;
 import hello.hellospring.domain.Grade;
 import hello.hellospring.domain.Member;
 import hello.hellospring.domain.Order;
@@ -31,12 +32,8 @@ public class OrderServiceTests {
     @Autowired MemberService memberService;
     @Autowired OrderService orderService;
 
-    private final int STANDARD_PRICE = 10000;
-
-    private final int FIX_DISCOUNT = 1000;
-    private final float RATE_DISCOUNT = 0.1f;
-    private final int PAYMENT_AMOUNT_ON_FIX_DISCOUNT = STANDARD_PRICE - FIX_DISCOUNT;
-    private final float PAYMENT_AMOUNT_ON_RATE_DISCOUNT = STANDARD_PRICE * (1 - RATE_DISCOUNT);
+    private final int PAYMENT_AMOUNT_ON_FIX_DISCOUNT = CommonConstant.STANDARD_PRICE - CommonConstant.FIX_DISCOUNT;
+    private final float PAYMENT_AMOUNT_ON_RATE_DISCOUNT = CommonConstant.STANDARD_PRICE * (1 - CommonConstant.RATE_DISCOUNT);
 
     private Member memberBasic;
     private Member memberVip;
