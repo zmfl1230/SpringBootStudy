@@ -1,5 +1,6 @@
-package hello.hellospring.learningtest;
+package hello.hellospring.learningtest.singleton;
 
+import hello.hellospring.learningtest.LearningTestConfig;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
