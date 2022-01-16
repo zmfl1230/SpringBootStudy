@@ -35,6 +35,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * 위와 같은 의문은 어쨋든 기존의 싱글톤 패턴의 단점이었던 `테스트의 어려움`을 해결하고,
  * 필요하다면 자유롭게 목 오브젝트를 생성해서 사용할 수 았다는 편리함을 제공한다는 장점의 가치가
  * 오로지 단 하나의 오브젝트를 생성해야 한다는 원칙의 중요성 보다 더 크기때문에 아무 문제 없이 사용하는 것이 아닐까라는 생각이 든다.
+ *
+ * -- 추가 --
+ * 보면 이전까지 스프링이 싱글톤을 온전히 구현하는 것이 맞는가라는 의문하에 그 의문이 들게된 코드를 아래와 같이 테스트 코드로 만들어보았다. 의문을 해결하기 위해 이것 저것을 찾아보다
+ * 사실 아래처럼 새로운 인스턴스를 생성해 쓸 수 있게 하는 것은 사실 `스프링의 영역 밖`이라는 사실을 알게 되었다.
+ * 즉, 스프링의 기능을 이용한 것이 아니라 `스프링 없는 단순 DI`를 통해 테스트 해 본 것이다.
+ * 이렇게 되면 스프링을 자체적으로는 싱글톤 오브젝트를 관리하는 것은 맞되, 테스트할 떄나 필요한 경우 해당 오브젝트를 자유롭게 생성해 사용할 수 있게 했다는 말이 된다.
 * */
 public class SingletonTest {
     ApplicationContext ac = new AnnotationConfigApplicationContext(LearningTestConfig.class);
