@@ -10,8 +10,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ApplicationContextInfoTest {
-    /*
-        TODO: 왜 datasource 는 빈 등록이 안되는가
+    /**
+        왜 datasource 는 빈 등록이 안되는가 -> LearningTestConfig 클래스 내부적으로는 datasource를 빈으로 등록해주지 않기 때문
+        @SpringBootTest 와 같이 스프링 컨테이너를 테스트에 통합한 경우에만 DI 가능
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(OrderFactory.class);
     * */
 
