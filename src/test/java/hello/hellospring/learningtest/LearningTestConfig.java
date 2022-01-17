@@ -1,6 +1,6 @@
 package hello.hellospring.learningtest;
 
-import hello.hellospring.repository.JpaMemberRepository;
+import hello.hellospring.annotation.ExcludeComponent;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.repository.order.DiscountPolicy;
@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ExcludeComponent
 public class LearningTestConfig {
 
     @Bean
