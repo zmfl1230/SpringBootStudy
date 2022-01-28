@@ -23,8 +23,7 @@ public class OrderService {
         order.setProduct(product);
 
         order.setPaymentAmount(getPaymentAmountOnDiscountPolicy(buyer, product));
-        // TODO: repository 생성 후, 정의
-        // order.save()
+        orderRepository.save(order);
         return order;
     }
 

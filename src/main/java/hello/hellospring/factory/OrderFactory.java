@@ -8,10 +8,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.sql.DataSource;
 
 @Configuration
 public class OrderFactory {
+    @PersistenceContext
+    EntityManager em;
+
     @Autowired  DataSource dataSource;
 
     @Bean
@@ -44,7 +49,8 @@ public class OrderFactory {
     // 역할
     public OrderRepository orderRepository() {
         // 구체적인 구현체
-        return new JdbcOrderRepository(dataSource);
+//        return new JdbcOrderRepository(dataSource);
+        return new JpaOrderRepository(em);
     }
 
 
