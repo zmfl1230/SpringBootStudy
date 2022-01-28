@@ -1,4 +1,4 @@
-package hello.hellospring.learningtest;
+package hello.hellospring.learningtest.provider;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.ObjectProvider;
@@ -132,12 +132,12 @@ public class PrototypeProviderTest {
      * 그랬더니, 다음과 같은 결과가 출력되었다.
      * ```
      * // 1번 출력
-     * PrototypeBean.init hello.hellospring.learningtest.PrototypeProviderTest$PrototypeBean@5efa40fe
-     * PrototypeBean.init hello.hellospring.learningtest.PrototypeProviderTest$PrototypeBean@6736fa8d
+     * PrototypeBean.init hello.hellospring.learningtest.provider.PrototypeProviderTest$PrototypeBean@5efa40fe
+     * PrototypeBean.init hello.hellospring.learningtest.provider.PrototypeProviderTest$PrototypeBean@6736fa8d
      *
      * // 2번 출력
-     * clientBean1 = hello.hellospring.learningtest.PrototypeProviderTest$PrototypeBean@6736fa8d
-     * clientBean2 = hello.hellospring.learningtest.PrototypeProviderTest$PrototypeBean@6736fa8d
+     * clientBean1 = hello.hellospring.learningtest.provider.PrototypeProviderTest$PrototypeBean@6736fa8d
+     * clientBean2 = hello.hellospring.learningtest.provider.PrototypeProviderTest$PrototypeBean@6736fa8d
      * ```
      * 분명 다른 값이 생성되었는데, 왜 반환값이 동일할까을 두고 고민하던 찰나에... 이런 멤버 변수... 싱글톤인데 상태를 가지고 있었구나... 생각이 떠올랐다.
      *
