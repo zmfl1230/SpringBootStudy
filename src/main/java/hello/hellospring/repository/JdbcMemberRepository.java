@@ -18,6 +18,7 @@ import java.util.Optional;
 public class JdbcMemberRepository implements MemberRepository{
 
     private final JdbcTemplate JdbcTemplate;
+    private final JdbcMemberContextWithStatementStrategy jdbcMemberContextWithStatementStrategy;
     /*
      * 클래스 레벨에서 구체적인 의존관계가 그려지고 있다.(인터페이스를 두지 않고, 클래스 오브젝트를 주입했기 때문)
      * 인터페이스를 둬 클래스간 느슨한 의존관계를 나타내고 있지 않았다는 것에 온전한 DI라고 볼 수 없을 순 있으나,
@@ -25,7 +26,8 @@ public class JdbcMemberRepository implements MemberRepository{
      * 이런 개념하에. jdbcMemberContextWithStatementStrategy을 JdbcMemberRepository에서 사용할 수 있도록 주입했다는 것은 DI의 원리를 따른다고 볼 수 있다.
      * */
 
-    public JdbcMemberRepository(DataSource dataSource) {
+    public JdbcMemberRepository(DataSource dataSource, JdbcMemberContextWithStatementStrategy jdbcMemberContextWithStatementStrategy) {
+        this.jdbcMemberContextWithStatementStrategy = jdbcMemberContextWithStatementStrategy;
         this.JdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -46,7 +48,7 @@ public class JdbcMemberRepository implements MemberRepository{
 
     @Override
     public void save(String name){
-        JdbcTemplate.update("insert into member(name) values(?)", name);
+        jdbcMemberContextWithStatementStrategy.jdbcMemberContext(new JdbcMemberSave(name));
     }
 
     @Override
